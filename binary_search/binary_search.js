@@ -8,6 +8,21 @@ const randomNumbers = [
   64,1,72,36,9,13,39,43,74,26,84,92,37,48,33,96,
 ]
 
+
+function shortBinarySearch(arr, target){
+
+  const sortArr  = [...new Set(arr)].sort((a,b) => a-b)
+  let start = 0
+  let end = sortArr.length -1 
+  let middle = Math.floor((start + end)/2)
+  while(sortArr[middle] !== target && start <= end){
+    target < sortArr[middle] ? end = middle - 1 : start = middle + 1
+    middle = Math.floor((start + end)/2)
+  }
+  return sortArr[middle] == target ? middle : -1
+}
+
+//Look below for the full explanation
 //the idea is to find the N number using a binary search
 
 //create the function that implements binary search to ptimize speed 
@@ -36,24 +51,28 @@ function binarySearch(arr, target){
   //check if the middle is the target, if it is then return it 
 
   //we loop over the array of number with a While loop as long as the arr[middle] !== target
-  while(sortArr[middle] !== target){//if target is not the sortArr[middle] and 
+  while(sortArr[middle] !== target && start <= end){//if target is not the sortArr[middle] and 
     //and target is < the sortArr[middle] then end = middle -1
     if(target < sortArr[middle]){
       //if the target 89 is less than the middle 50 then the middle -1 else start = middle +1
-      end = middle -1
+      end = middle - 1
     } else {
-      start = middle +1
+      start = middle + 1
     }
-    //just calculate the the middle again
+    //just calculate the the middle again using the updated values of end and start
     middle = Math.floor((start + end)/2)
-    // console.log({'start': sortArr[start], 'middle':sortArr[middle], 'end':sortArr[end]})
-    // console.log(sortArr[middle])
-    return middle
-   }
-   
+  }
+  console.log({'start': start, middle: 'middle', 'end': end})
+  if(sortArr[middle] === target) {
+    console.log(middle)
+  } else {
+    console.log(-1)
+    return -1
+    
+  }
 }
 
-binarySearch(randomNumbers, 89)
+binarySearch(randomNumbers, 109)
 
 /*
 { start: 51, middle: 75, end: 100 } //the first time it loops 89 is greater that 51, 
@@ -68,4 +87,7 @@ binarySearch(randomNumbers, 89)
 89 => this is middle// it stops the loop because sortArr[middle] is the target
 */
 
-// if the number is not found there then the infinte loop will start
+// if the number is not found there then the infinte loop will start => 
+// the reason is tha that start will go over because it is set to be middle +1
+//as long as the target is above the array 
+//an option to habdle this is by looping as long as start is less or equal to end
