@@ -28,8 +28,8 @@ you would read the following example
  - We will omit the 2
 
  log === log<sub>2</sub>
-  - log always has to have a base, it will be more common to see is log instead log<sub>2</sub>
-### Rule of thum
+  - `log` always has to have a base, it will be more common to see is log instead log<sub>2</sub>
+### Rule of thumb
 
 The logarithm of a number roughly measures the number of times you can divide that number by 2 **before you get a value that's less  than or equal to one**
 
